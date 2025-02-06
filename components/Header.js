@@ -2,7 +2,7 @@ import styles from "../styles/Home.module.css"
 
 const Header = () => (
     <div className={styles.header}>
-        <b className={styles.header_name}>システム名</b>
+        <h1 className={styles.systemName}>システム名</h1>
     </div>
 );
 

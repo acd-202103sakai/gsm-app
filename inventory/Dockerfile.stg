@@ -1,0 +1,28 @@
+# Stage 1: Build stage
+FROM node:18-alpine AS build-stage
+RUN apk update && apk add --no-cache build-base 
+
+ENV HOST 0.0.0.0
+
+# 依存関係をインストール
+WORKDIR /opt/app  # node_modules がこのディレクトリ内にインストールされる
+COPY ./package.json ./package-lock.json ./
+RUN npm config set fetch-retry-maxtimeout 600000 -g && npm install
+
+# Stage 2: Production stage (検証環境用)
+FROM node:18-alpine
+# ソースコードのコピー
+WORKDIR /opt/app
+COPY . /opt/app/
+
+# 依存関係のインストール
+RUN npm install  # 再度依存関係をインストール
+
+# 環境変数の設定
+ENV PATH=/opt/app/node_modules/.bin:$PATH
+# ENV INVENTORY_URL=https://your-production-url.com  # 本番環境のURL設定はコメントアウト
+
+# アプリケーションのビルドと起動
+RUN chown -R node:node /opt/app
+EXPOSE 3000
+CMD ["npm", "run", "dev"]  # 検証環境向けには開発用コマンドで実行

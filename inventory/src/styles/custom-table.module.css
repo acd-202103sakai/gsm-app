@@ -1,0 +1,59 @@
+/*
+ * 概要  ：商品在庫マスタ管理システムの一覧表テーブルに関するスタイルを定義
+ * 作成  ：2025/02/12 FIS坂井
+ * 更新  ：未実施
+*/
+
+/* ======================================
+   全画面で汎用的なカスタムテーブルスタイル
+   ====================================== */
+/* テーブルエリア */
+.tableArea {
+    border: 1px solid #A6A6A6;
+    width: 400px;
+}
+
+/* テーブル */
+.table {
+    border-collapse: collapse;
+    table-layout: auto;
+    width: 400px;
+    overflow: hidden;
+    text-align: left;
+    margin-top: -0.7px;
+    margin-left: -0.7px;
+}
+
+.table tr {
+    background-color: #ffffff;
+    border: 1px solid #A6A6A6;
+}
+
+.table th,
+.table td {
+    padding: 7px;
+    padding-right: 20px;
+}
+
+.table thead th {
+    background-color: #E8E8E8;
+    color: #333;
+    font-weight: bold;
+    text-align: left;
+}
+
+/* チェックボックス */
+.table_checkBox{
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+}
+
+/* 一覧表フッタ部分ボタンエリア */
+.table_buttonArea{
+  width: 250px;
+  height: 60px;
+  display: flex;
+  margin: 0 0 0 auto;
+  align-items: center;
+}

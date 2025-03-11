@@ -1,0 +1,118 @@
+/*
+ * 概要  ：商品在庫マスタ管理システムのボタンに関するスタイルを定義
+ * 作成  ：2025/02/12 FIS坂井
+ * 更新  ：未実施
+*/
+
+/* ======================================
+   全画面で汎用的なカスタムボタンスタイル
+   ====================================== */
+/* 参照ボタン */
+.button_ref {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    width: 100px;
+    height: 40px;
+    font-weight: bold;
+    font-size: 18px;
+    background: #333;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button.button_ref:hover {
+    color: #ffffff;
+    font-size: 20px;
+    background: #050505;
+}
+
+/* 登録・更新ボタン */
+.button_entry {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    width: 500px;
+    height: 60px;
+    line-height: 60px;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 70px;
+    font-size: 28px;
+    font-weight: bold;
+    background: #333;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button.button_entry:hover {
+    font-size: 30px;
+    color: #ffffff;
+    background: #050505;
+}
+
+/* 追加ボタン（一覧表内） */
+.button_insert {
+    flex: 2;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    max-width: 100px;
+    height: 40px;
+    margin: 10px;
+    font-weight: bold;
+    font-size: 18px;
+    background: #333;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button.button_insert:hover {
+    font-size: 20px;
+    color: #ffffff;
+    background: #050505;
+}
+
+/* 削除ボタン（一覧表内） */
+.button_del {
+    flex: 3;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    max-width: 100px;
+    height: 40px;
+    margin: 10px;
+    font-weight: bold;
+    font-size: 18px;
+    background: #333;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button.button_del:hover {
+    font-size: 20px;
+    color: #ffffff;
+    background: #050505;
+}
+
+/* 編集リンク（一覧表内） */
+.link_update {
+    all: unset;
+    color: #4472C4;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  
+  .link_update:hover {
+    color: #005eff;
+  }
+  
+
+/* ======================================
+   任意の画面で限定的なカスタムボタンスタイル
+   ====================================== */
+/*未設定*/

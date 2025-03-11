@@ -1,0 +1,177 @@
+/*
+ * 概要  ：全画面共通のページレイアウト（ヘッダ、ボディ、フッタ）に関するスタイルを定義
+ *         商品在庫マスタ管理システムの基本レイアウトである。
+ * 作成  ：2025/02/12 FIS坂井
+ * 更新  ：未実施
+*/
+
+/* ======================================
+   全画面共通のヘッダ部分
+   ====================================== */
+/* ヘッダのスタイル */
+.header {
+    color: #fff;
+    background-color: #333;
+    width: 1200px;
+    height: 60px;
+    line-height: 60px;
+}
+
+/* ヘッダ内システム名のスタイル */
+.header_systemName {
+    padding-left: 15px;
+    font-size: 27px;
+    font-weight: normal;
+}
+
+/* ======================================
+   全画面共通のボディ部分
+   ====================================== */
+/* ボディ（サイドメニュー、メインコンテンツエリア含む）のスタイル */
+.body {
+    position: relative;
+    display: flex;
+    background-color: #E8E8E8;
+    width: 1200px;
+}
+
+/* サイドメニューのスタイル */
+.sideMenu {
+    flex: 1;
+    position: relative;
+    background-color: #E8E8E8;
+    border-right: 2px solid #A6A6A6;
+    max-width: 200px;
+    font-size: 18px;
+    transition: all 0.2s;
+}
+
+.sideMenu ul {
+    width: 200px;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    background-color: #E8E8E8;
+    border-right: 2px solid #A6A6A6;
+}
+
+.sideMenu li a {
+    display: block;
+    padding: 8px 16px;
+    text-decoration: none;
+    color: #333;
+    transition: all .3s;
+}
+
+.sideMenu li {
+    text-align: center;
+    border-bottom: 1px solid #A6A6A6;
+}
+
+.sideMenu li a:hover {
+    color: #ffffff;
+    background-color: #333333;
+    font-size: 20px;
+}
+
+/* メインコンテンツエリアのスタイル */
+.main {
+    flex: 4;
+    position: relative;
+    background-color: #E8E8E8;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+/* メインコンテンツエリア-パンくずリストのスタイル */
+.breadcrumb {
+    font-size: 14px;
+    padding: 10px 0;
+}
+
+.breadcrumb a {
+    text-decoration: none;
+    color: #000000;
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
+    color: #005eff;
+}
+
+.breadcrumb span {
+    color: #555;
+}
+
+/* メインコンテンツエリア-ヘッダ（戻るボタン、ページ名）のスタイル */
+.main_header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid #333;
+}
+
+/* メインコンテンツエリア-ヘッダ-戻るボタンのスタイル */
+.backBtnArea {
+    display: flex;
+    align-items: center;
+    width: auto;
+    /* ← 間隔を詰める */
+}
+
+.backBtnArea_btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background: none;
+    color: black;
+    font-size: 32px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.backBtnArea_btn::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    /* 最初から完全な円 */
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: transform 0.4s ease, width 0.4s ease, height 0.4s ease, opacity 0.4s ease, border-radius 0.4s ease;
+}
+
+.backBtnArea_btn:hover::before {
+    width: 100px;
+    /* 丸のまま拡大 */
+    height: 100px;
+    /* 丸のまま拡大 */
+    border-radius: 50%;
+    /* ここを明示的に指定 */
+    opacity: 1;
+    transform: translate(-50%, -50%);
+}
+
+/* メインコンテンツエリア-ヘッダ-ページ名のスタイル */
+.pageNameArea {
+    display: flex;
+    align-items: center;
+    width: auto;
+    /* ← 間隔を詰める */
+}
+
+.pageNameArea_name {
+    font-size: 20px;
+    align-items: center;
+    padding-left: 5px;
+    /* ← 余白を小さく */
+}

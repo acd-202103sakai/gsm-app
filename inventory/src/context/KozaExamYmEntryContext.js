@@ -12,6 +12,12 @@ export const KozaExamYmEntryProvider = ({ children }) => {
     // 年月繰越状態（01: 未繰越状態、02: 年月繰越状態）
     carriedFoewardYmState: "01",
     /* 講座試験年月情報入力欄 */
+    // 講座ID
+    selectedKozaId: "",
+    // 講座正式名称
+    kozaName: "",
+    // 年月繰越範囲
+    selectedCarriedFoewardRange: "",
     // 試験年月_年度
     selectedExamYear: "",
     // 試験年月_月

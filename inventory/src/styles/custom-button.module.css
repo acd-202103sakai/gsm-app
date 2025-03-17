@@ -20,6 +20,7 @@
     color: #fff;
     cursor: pointer;
     transition: 0.2s;
+    margin-left: 20px;
 }
 
 button.button_ref:hover {
@@ -76,6 +77,20 @@ button.button_insert:hover {
     background: #050505;
 }
 
+.disabledButton_insert {
+    flex: 2;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    max-width: 100px;
+    height: 40px;
+    margin: 10px;
+    font-weight: bold;
+    font-size: 18px;
+    background: #a7a7a7;
+    color: #fff;
+}
+
 /* 削除ボタン（一覧表内） */
 .button_del {
     flex: 3;
@@ -97,6 +112,20 @@ button.button_del:hover {
     font-size: 20px;
     color: #ffffff;
     background: #050505;
+}
+
+.disabledButton_del {
+    flex: 3;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    max-width: 100px;
+    height: 40px;
+    margin: 10px;
+    font-weight: bold;
+    font-size: 18px;
+    background: #a7a7a7;
+    color: #fff;
 }
 
 /* 編集リンク（一覧表内） */

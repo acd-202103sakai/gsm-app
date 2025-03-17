@@ -35,18 +35,6 @@
   display: flex;
 }
 
-/* 参照情報選択ボックス・ボタンエリア */
-.box_ref{
-  flex: 1;
-  position: relative;
-}
-
-.ref_buttonArea{
-  flex: 2;
-  position: relative;
-  margin-left: 20px;
-}
-
 /* 注意書きスタイル */
 .comment_warning{
   font-size: 13px;
@@ -58,5 +46,73 @@
   width: 700px;
   height: 150px;
   font-size: 18px;
+  padding: 10px;
+}
+
+/* 年月選択エリア・ボックススタイル */
+.ymSelectorArea {
+  display: flex;
+  gap: '10px';
+  align-items: center;
+}
+
+.box_yearSelect {
+  width: 100px;
+  height: 40px;
+  font-size: 15px;
+  padding: 10px;
+  margin-right: 8px;
+}
+
+.box_monthSelect {
+  width: 70px;
+  height: 40px;
+  font-size: 15px;
+  padding: 10px;
+  margin-left: 8px;
+  margin-right: 8px;
+}
+
+/* inputボックススタイル */
+.inputBox_short {
+  width: 100px;
+  height: 40px;
+  font-size: 18px;
+  padding: 10px;
+}
+
+.inputBox_middle {
+  width: 250px;
+  height: 40px;
+  font-size: 18px;
+  padding: 10px;
+}
+
+.inputBox_long {
+  width: 500px;
+  height: 40px;
+  font-size: 18px;
+  padding: 10px;
+}
+
+/* selectボックススタイル */
+.selectBox_short {
+  width: 70px;
+  height: 40px;
+  font-size: 15px;
+  padding: 10px;
+}
+
+.selectBox_middle {
+  width: 200px;
+  height: 40px;
+  font-size: 15px;
+  padding: 10px;
+}
+
+.selectBox_long {
+  width: 350px;
+  height: 40px;
+  font-size: 15px;
   padding: 10px;
 }

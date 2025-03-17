@@ -16,20 +16,6 @@ body {
   box-sizing: border-box;
 }
 
-select {
-  width: 350px;
-  height: 40px;
-  font-size: 15px;
-  padding: 10px;
-}
-
-input {
-  width: 500px;
-  height: 40px;
-  font-size: 18px;
-  padding: 10px;
-}
-
 h2 {
   margin-top: 10px; /* 上のマージンをリセット */
   margin-bottom: 10px; /* 下のマージンを20pxに設定 */

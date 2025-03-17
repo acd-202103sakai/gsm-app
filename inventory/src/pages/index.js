@@ -23,7 +23,7 @@ const Home = () => {
   // コンテキスト内で保持されている画面情報（データと更新関数）の取得および管理
   const { kozaEntryUpdateData, setKozaEntryUpdateData } = useContext(KozaEntryUpdateContext);
   // コンテキスト内で保持されている講座試験年月登録更新画面情報（データと更新関数）の取得および管理※画面モードセット用
-    const { kozaExamYmEntryData, setKozaExamYmEntryData } = useContext(KozaExamYmEntryContext);
+  const { kozaExamYmEntryData, setKozaExamYmEntryData } = useContext(KozaExamYmEntryContext);
   // Next.jsのuseRouterフックを使用して、ルーターオブジェクトを取得（画面遷移先パス指定用）
   const router = useRouter();
 
@@ -176,8 +176,15 @@ const Home = () => {
    * 講座試験年月一覧表内「追加ボタン」押下時処理
    */
   const handleAddition = () => {
-    // 講座試験年月登録更新画面の画面モードを登録モード（01）とする
-    setKozaExamYmEntryData(prev => ({ ...prev, screenMode: COMMON_CONSTANTS.SCREEN_MODE_ENTRY }));
+    // 講座試験年月登録更新画面へ渡す画面表示情報をコンテキストにセット
+    setKozaExamYmEntryData(prev => ({
+      ...prev,
+      // 講座試験年月登録更新画面の画面モードを登録モード（01）とする
+      screenMode: COMMON_CONSTANTS.SCREEN_MODE_ENTRY,
+      // 講座情報をセット
+      kozaId: kozaEntryUpdateData.selectedKozaId,
+      kozaName: kozaEntryUpdateData.kozaName,
+    }));
 
     // 講座試験年月登録更新画面に遷移
     router.push(ROUTING_PATHS.KOZA_EXAM_YM_ENTRY);
@@ -186,9 +193,26 @@ const Home = () => {
   /*
    * 講座試験年月一覧表内「編集ボタン」押下時処理
    */
-  const handleEdit = () => {
-    // 講座試験年月登録更新画面の画面モードを更新モード（02）とする
-    setKozaExamYmEntryData(prev => ({ ...prev, screenMode: COMMON_CONSTANTS.SCREEN_MODE_UPDATE }));
+  const handleEdit = (kozaId, examYm) => {
+    // 編集対象の講座試験年月情報を取得
+    const selectedExamYm = kozaEntryUpdateData.kozaExamYmList.find(
+      (item) => item.koza_id === kozaId && item.exam_ym === examYm
+    );
+
+    // 講座試験年月登録更新画面へ渡す画面表示情報をコンテキストにセット
+    setKozaExamYmEntryData(prev => ({
+      ...prev,
+      // 講座試験年月登録更新画面の画面モードを更新モード（02）とする
+      screenMode: COMMON_CONSTANTS.SCREEN_MODE_UPDATE,
+      // 編集対象の講座試験年月情報をセット
+      kozaId: kozaEntryUpdateData.selectedKozaId,
+      kozaName: kozaEntryUpdateData.kozaName,
+      examYear: selectedExamYm.exam_ym.slice(0, 4),
+      examMonth: selectedExamYm.exam_ym.slice(4, 6),
+      examDate: selectedExamYm.exam_date,
+      saleStartDate: selectedExamYm.sale_start_date,
+      saleEndDate: selectedExamYm.sale_end_date,
+    }));
 
     // 講座試験年月登録更新画面に遷移
     router.push(ROUTING_PATHS.KOZA_EXAM_YM_ENTRY);
@@ -330,8 +354,9 @@ const Home = () => {
               <a>参照したい講座を選択してください。</a>
             </div>
             <div className={componentStyles.refComponent}>
-              <div className={componentStyles.box_ref}>
-                <select name="selectedKozaId" value={kozaEntryUpdateData.selectedKozaId} onChange={handleChange} disabled={kozaEntryUpdateData.screenMode !== COMMON_CONSTANTS.SCREEN_MODE_ENTRY}>
+              <div>
+                <select className={componentStyles.selectBox_long} name="selectedKozaId" value={kozaEntryUpdateData.selectedKozaId} onChange={handleChange}
+                  disabled={kozaEntryUpdateData.screenMode !== COMMON_CONSTANTS.SCREEN_MODE_ENTRY}>
                   <option value="">-選択してください-</option>
                   {kozaEntryUpdateData.kozaList.map((koza) => (
                     <option key={koza.koza_id} value={koza.koza_id}>
@@ -340,7 +365,7 @@ const Home = () => {
                   ))}
                 </select>
               </div>
-              <div className={componentStyles.ref_buttonArea}>
+              <div>
                 {kozaEntryUpdateData.screenMode === "01" ? (
                   <button onClick={handleRef} className={buttonStyles.button_ref}>{BUTTON_LABELS.REFERENCE}</button>
                 ) : (
@@ -362,7 +387,7 @@ const Home = () => {
               <b>講座正式名称</b>
             </div>
             <div>
-              <input type="text" name="kozaName" value={kozaEntryUpdateData.kozaName} onChange={handleChange} required />
+              <input className={componentStyles.inputBox_long} type="text" name="kozaName" value={kozaEntryUpdateData.kozaName} onChange={handleChange} required />
             </div>
             <div className={componentStyles.comment_warning}>
               <a>※商品名表示に使用されます。</a>
@@ -373,7 +398,7 @@ const Home = () => {
               <b>簡易講座名</b>
             </div>
             <div>
-              <input type="text" name="kozaIName" value={kozaEntryUpdateData.kozaIName} onChange={handleChange} required />
+              <input className={componentStyles.inputBox_long} type="text" name="kozaIName" value={kozaEntryUpdateData.kozaIName} onChange={handleChange} required />
             </div>
             <div className={componentStyles.comment_warning}>
               <a>※管理画面で使用されることが多い講座名です。</a>
@@ -384,7 +409,7 @@ const Home = () => {
               <b>講座短縮名</b>
             </div>
             <div>
-              <input type="text" name="kozaShortName" value={kozaEntryUpdateData.kozaShortName} onChange={handleChange} required />
+              <input className={componentStyles.inputBox_long} type="text" name="kozaShortName" value={kozaEntryUpdateData.kozaShortName} onChange={handleChange} required />
             </div>
             <div className={componentStyles.comment_warning}>
               <a>※サイト上で主な講座名表示形式となります。</a>
@@ -395,7 +420,7 @@ const Home = () => {
               <b>講座解析用名</b>
             </div>
             <div>
-              <input type="text" name="kozaAnalyticsName" value={kozaEntryUpdateData.kozaAnalyticsName} onChange={handleChange} required />
+              <input className={componentStyles.inputBox_long} type="text" name="kozaAnalyticsName" value={kozaEntryUpdateData.kozaAnalyticsName} onChange={handleChange} required />
             </div>
             <div className={componentStyles.comment_warning}>
               <a>※管理画面で使用されることが多く、GA4等に送る講座文字列としても使用されます。</a>
@@ -406,7 +431,7 @@ const Home = () => {
               <b>講座ドメイン名</b>
             </div>
             <div>
-              <input type="text" name="kozaDomain" value={kozaEntryUpdateData.kozaDomain} onChange={handleChange} required />
+              <input className={componentStyles.inputBox_long} type="text" name="kozaDomain" value={kozaEntryUpdateData.kozaDomain} onChange={handleChange} required />
             </div>
             <div className={componentStyles.comment_warning}>
               <a>※URLの講座を判別する文字列として使用されます。</a>
@@ -465,10 +490,17 @@ const Home = () => {
                   </tbody>
                 </table>
               </div>
-              <div className={tableStyles.table_buttonArea}>
-                <button onClick={handleAddition} className={buttonStyles.button_insert}>{BUTTON_LABELS.ADDITION}</button>
-                <button onClick={handleDelete} className={buttonStyles.button_del}>{BUTTON_LABELS.DELETE}</button>
-              </div>
+              {kozaEntryUpdateData.screenMode === COMMON_CONSTANTS.SCREEN_MODE_ENTRY ? (
+                <div className={tableStyles.table_buttonArea}>
+                  <button onClick={handleAddition} className={buttonStyles.disabledButton_insert} disabled>{BUTTON_LABELS.ADDITION}</button>
+                  <button onClick={handleDelete} className={buttonStyles.disabledButton_del} disabled>{BUTTON_LABELS.DELETE}</button>
+                </div>
+              ) : (
+                <div className={tableStyles.table_buttonArea}>
+                  <button onClick={handleAddition} className={buttonStyles.button_insert}>{BUTTON_LABELS.ADDITION}</button>
+                  <button onClick={handleDelete} className={buttonStyles.button_del}>{BUTTON_LABELS.DELETE}</button>
+                </div>
+              )}
             </div>
           </div>
         </div>
